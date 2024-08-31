@@ -2,11 +2,24 @@
 using namespace std;
 
 int main(){
-    // Theatre Square
-
-    long long n,m,a;
-    cin >> n >> m >> a;
-    long long res = (ceil((double)n/a)*ceil((double)m/a));
-    cout << res;
+    //  Bit++
+    
+    int x{};
+    int t; cin >> t;
+    while(t--){
+        string n;
+        cin >> n;
+        for(int i{}; i<3; ++i){
+            if(n[i] == '+'){
+                x++;
+                break;
+            }
+            if(n[i] == '-'){
+                x--;
+                break;
+            }
+        }
+    }
+    cout << x;
     return 0;
 }
