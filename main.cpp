@@ -2,8 +2,15 @@
 using namespace std;
 
 int main(){
-    int m, n; cin >> m >> n;
-    // sum = 0;
-    int sum = ((m/2)*n)+((m%2)*(n/2));
-    cout << sum;
+    // 263A - Beautiful Matrix 
+    int matrix[5][5];
+    for(int i{}; i<5; i++){
+        for(int j{}; j<5; j++){
+            int in; cin >> in;
+            if(in == 1){
+                cout << abs(2-i)+abs(2-j);
+                return 0;
+            }
+        }
+    }
 }
