@@ -2,24 +2,19 @@
 using namespace std;
 
 int main(){
-    // 339A - Helpful Maths 
-    string a; cin >> a;
-    vector<int> b;
-    for(char cha:a){
-        if(int(cha) != 43){
-            b.push_back(int(cha)-'0');
-        }
-    }
+    //  281A - Word Capitalization 
+    string a; cin >>a;
 
-    sort(b.begin(), b.end());
-
-    for(int i{}; i<b.size(); i++){
-        if(i == b.size()-1){
-            cout << b[i];
+    if(int(a[0]) >= 65 && int(a[0]) <= 90){
+        cout << a;
+        return 0;
+    }    
+    for(int i{}; i<a.length(); i++){
+        if(i == 0){
+            cout << char(a[0]-32); 
         }else{
-            cout << b[i] << "+";
+            cout << a[i];
         }
     }
-
     return 0;
 }
