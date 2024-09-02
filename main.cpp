@@ -2,12 +2,15 @@
 using namespace std;
 
 int main(){
-    // 236A - Boy or Girl 
+    //  791A - Bear and Big Brother 
 
-    string a; cin >>a;
-    set<char> b;
-    for(char cha:a){
-        b.insert(cha);
+    int a,b; cin >> a >> b;
+    int count=0;
+    while(b>=a){
+        b*=2;
+        a*=3;
+        count++;
     }
-    cout << (b.size()%2==0?"CHAT WITH HER!":"IGNORE HIM!");
+
+    cout << count;
 }
