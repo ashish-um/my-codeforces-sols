@@ -1,16 +1,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    // 263A - Beautiful Matrix 
-    int matrix[5][5];
-    for(int i{}; i<5; i++){
-        for(int j{}; j<5; j++){
-            int in; cin >> in;
-            if(in == 1){
-                cout << abs(2-i)+abs(2-j);
-                return 0;
-            }
-        }
+char to_lowecase(char a){
+    if(int(a) >= 65 && int(a) <= 90){
+        return char(int(a)+32);
     }
+    return a;
+}
+
+int main(){
+    // 112A - Petya and Strings 
+    
+    string a, b;
+    cin >> a >> b;
+    for(int i{}; i<a.length(); i++){
+        char A = to_lowecase(a[i]);
+        char B = to_lowecase(b[i]);
+
+        if(int(A) > int(B)){
+            cout << 1;
+            return 0;
+        }
+        if(int(A) < int(B)){
+            cout << -1;
+            return 0;
+        }
+
+    }
+    cout << 0;
 }
