@@ -2,23 +2,8 @@
 using namespace std;
 
 int main(){
-//    A. Next Round 
-    int n,k; cin >> n >> k;
-    int res{};
-    int pos=1;
-    int k_val = -1;
-    while(n--){
-        int a;
-        cin >> a;
-        if(pos == k) k_val = a;
-        if(k_val > 0 && a < k_val){
-            cout << res;
-            return 0;
-        }
-        if(a != 0){
-            ++res;
-        }
-        ++pos;
-    }
-    cout << res;
+    int m, n; cin >> m >> n;
+    // sum = 0;
+    int sum = ((m/2)*n)+((m%2)*(n/2));
+    cout << sum;
 }
