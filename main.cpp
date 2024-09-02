@@ -2,19 +2,12 @@
 using namespace std;
 
 int main(){
-    //  281A - Word Capitalization 
-    string a; cin >>a;
+    // 236A - Boy or Girl 
 
-    if(int(a[0]) >= 65 && int(a[0]) <= 90){
-        cout << a;
-        return 0;
-    }    
-    for(int i{}; i<a.length(); i++){
-        if(i == 0){
-            cout << char(a[0]-32); 
-        }else{
-            cout << a[i];
-        }
+    string a; cin >>a;
+    set<char> b;
+    for(char cha:a){
+        b.insert(cha);
     }
-    return 0;
+    cout << (b.size()%2==0?"CHAT WITH HER!":"IGNORE HIM!");
 }
