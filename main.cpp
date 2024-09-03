@@ -1,15 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-//  432A - Choosing Teams 
-    int n,k; cin >> n >> k;
-    int count{};
-    for(int i{}; i<n; i++){
-        int a; cin >> a;
-        if(a+k <= 5){
-            count++;
-        }
+char to_lower(char c){
+    if(int(c)>=65 && int(c)<=90){
+        return c+32;
     }
-    cout << count/3;
+    return c; 
+    
+}
+
+int main(){
+    // 118A - String Task 
+    string t; cin >> t;
+    unordered_set<char> yo = {'a','e','i','o','u', 'y'};
+    for(char cha:t){
+        char smol = to_lower(cha);
+        if(yo.count(smol)==0){
+            cout << "." << smol;
+        }
+        
+    }
 }
