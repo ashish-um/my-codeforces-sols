@@ -3,20 +3,21 @@ using namespace std;
 
 
 int main(){
-    // 69A - Young Physicist 
-    int t; cin >> t;
-    int sum1{},sum2{},sum3{};
-    while(t--){
-        int a,b,c;
-        cin >> a >> b >> c;
-        sum1+=a;
-        sum2+=b;
-        sum3+=c;
-    }
-    if(sum1 == 0 && sum2 == 0 && sum3 == 0){
-        cout << "YES";
-        return 0;
+// 58A - Chat room 
+
+    string s; cin >> s;
+    int found{};
+    for(char c:s){
+        
+        if(found == 0 && c=='h') found++;
+        if(found == 1 && c=='e') found++;
+        if(found == 3 && c=='l') found++;
+        if(found == 2 && c=='l') found++;
+        if(found == 4 && c=='o') {
+            cout << "YES";
+            return 0;
+        }
+        
     }
     cout << "NO";
-    return 0;
 }
