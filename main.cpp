@@ -1,23 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
 int main(){
-// 58A - Chat room 
+// 1901A - Line Trip 
 
-    string s; cin >> s;
-    int found{};
-    for(char c:s){
-        
-        if(found == 0 && c=='h') found++;
-        if(found == 1 && c=='e') found++;
-        if(found == 3 && c=='l') found++;
-        if(found == 2 && c=='l') found++;
-        if(found == 4 && c=='o') {
-            cout << "YES";
-            return 0;
-        }
-        
-    }
-    cout << "NO";
+   int t; cin>>t;
+   cout << endl;
+   while(t--){
+      int n,x; cin >> n >> x;
+      int max=0;
+      int prev = 0, curr;
+      for(int i=0; i<n; i++){
+         cin >> curr;
+         int diff = curr-prev;
+         max = fmax(max, diff);
+         prev = curr;         
+      }
+      max = fmax(max, (x-curr)*2);
+      cout << max << endl;
+   }
 }
