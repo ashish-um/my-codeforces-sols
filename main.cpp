@@ -2,21 +2,37 @@
 using namespace std;
 
 int main(){
-// 1901A - Line Trip 
+// 1900A - Cover in Water 
 
-   int t; cin>>t;
-   cout << endl;
+   int t; cin >> t;
    while(t--){
-      int n,x; cin >> n >> x;
-      int max=0;
-      int prev = 0, curr;
-      for(int i=0; i<n; i++){
-         cin >> curr;
-         int diff = curr-prev;
-         max = fmax(max, diff);
-         prev = curr;         
+      int n; cin >> n;
+      string str; cin >> str;
+
+      int count{};
+      vector<int> all;
+      bool found3 = false;
+      for(int i{}; i<n; i++){
+         if(str[i] == '.'){
+            count++;
+            
+         }else{
+            if(count != 0){
+               all.push_back(count);
+            }
+            count = 0;
+         }
       }
-      max = fmax(max, (x-curr)*2);
-      cout << max << endl;
+      if(count != 0) all.push_back(count);
+            
+      int res{};
+      for(int c:all){
+         if(c>2){
+            res=2;
+            break;
+         }
+         else res += c;
+      }
+      cout << res << endl;
    }
 }
