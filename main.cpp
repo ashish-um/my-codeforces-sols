@@ -2,37 +2,41 @@
 using namespace std;
 
 int main(){
-// 1900A - Cover in Water 
+   // Sieve of Erestosthenes
 
-   int t; cin >> t;
-   while(t--){
-      int n; cin >> n;
-      string str; cin >> str;
 
-      int count{};
-      vector<int> all;
-      bool found3 = false;
-      for(int i{}; i<n; i++){
-         if(str[i] == '.'){
-            count++;
-            
-         }else{
-            if(count != 0){
-               all.push_back(count);
-            }
-            count = 0;
+  int n = 10000;
+  vector<bool> arr(n+1);
+  int curr = 2;
+  int next = curr;
+  bool foundNext = false;
+
+  bool madeChanges = true;
+  int it{};
+  while (madeChanges){
+      madeChanges = false;
+      it++;
+      foundNext = false;
+      for(int i=2*curr; i<=n; i+=curr) {
+         if(arr[i]==0){
+            arr[i] = 1; // 1 means composite
+            madeChanges = true;
          }
       }
-      if(count != 0) all.push_back(count);
-            
-      int res{};
-      for(int c:all){
-         if(c>2){
-            res=2;
-            break;
+
+      for(int i=curr+1; i<n; i++){
+         if(arr[i]==0 && !foundNext){
+            next = i;
+            foundNext = true;
          }
-         else res += c;
       }
-      cout << res << endl;
-   }
+      curr = next;
+  }
+  cout << "Iterations: " << it << endl;
+
+   int count{};
+  for(int i=1; i<=n; i++){
+   if(arr[i]==0) count++;
+  }
+  cout << "Prime: " << count-1; // subtracting 1 cuz code considers 1 to be prime too
 }
