@@ -2,37 +2,27 @@
 using namespace std;
 
 int main(){
-// 1890A - Doremy's Paint 3 
+// 1881A - Don't Try to Count 
+
    int t; cin >> t;
    while(t--){
-      int n; cin >> n;
+      int n, m; cin >> n >> m;
 
-      unordered_map<int, int> mappy;
-      for(int i{}; i<n; i++){
-         int inp; cin >> inp;
-         mappy[inp]++;
-
+      string x, s;
+      cin >> x >> s;
+      int tries{};
+      for(int i{}; i < 10; i++){
+         if(x.find(s) != x.npos){
+            break;
+         }
+         x += x;
+         tries++;
+      }
+      if(x.find(s) != x.npos){
+         cout << tries << endl;
+      }else{
+         cout << -1 << endl;
       }
       
-      // Solution
-
-      if(mappy.size() == 1){
-         cout << "Yes" << endl;
-         continue;
-      }
-      if( mappy.size() > 2) {
-         cout << "No" << endl;
-         continue;
-      }
-      int diff{};
-      int i{};
-      for(auto it:mappy){
-         if(i == 0) diff += it.second;
-         else diff = abs(diff - it.second);
-         i++;
-      }
-
-      if(diff > 1) cout << "No" << endl;
-      else cout << "Yes" << endl;
    }
 }
