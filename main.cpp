@@ -2,40 +2,36 @@
 using namespace std;
 
 int main(){
-   // Sieve of Erastosthenes
+// 1896A - Jagged Swaps 
 
-  int n = 1000000;
-  vector<bool> arr(n+1);
-  int curr = 2;
-  int next = curr;
-  bool foundNext = false;
+   int t; cin >> t;
+   while(t--){
+      int n; cin >> n;
+      vector<int> a; 
+      vector<int> sorted;
+      for(int i{}; i<n; i++){
+         int inp; cin >> inp;
+         a.push_back(inp);
+      }
+      sorted = a;
+      sort(sorted.begin(), sorted.end());
 
-  bool madeChanges = true;
-  int it{};
-  int count{};
-  while (madeChanges){
-      madeChanges = false;
-      it++;
-      foundNext = false;
-      for(int i=curr*curr; i<=n; i+=curr) {
-         if(arr[i]==0){
-            arr[i] = 1; // 1 means composite
-            madeChanges = true;
+      // Actual Program
+      bool madeChanges = true;
+      while(madeChanges){
+         madeChanges = false;
+         for(int i=1; i<a.size()-1; i++){
+            if(a[i-1]<a[i] && a[i]>a[i+1]){
+               iter_swap(a.begin()+i, a.begin()+i+1);
+               madeChanges = true;
+            }
          }
       }
-      for(int i=curr+1; i<n; i++){
-         if(arr[i]==0 && !foundNext){
-            next = i;
-            foundNext = true;
-            count++;
-         }
-      }
-      curr = next;
-  }
-  cout << "Iterations: " << it << endl;
 
-  for(int i=next; i<=n; i++){
-   if(arr[i]==0) count++;
-  }
-  cout << "Prime: " << count; // subtracting 1 cuz code considers 1 to be prime too
+      if(sorted == a){
+         cout << "YES" << endl;
+      }else{
+         cout << "NO" << endl;
+      }
+   }
 }
