@@ -3,32 +3,32 @@ using namespace std;
 #define int long long
 
 signed main(){
- 	// 1337B - Kana and Dragon Quest game 
 
+   // 1985D - Manhattan Circle 	
    int t; cin >> t;
    while(t--){
-      int x,n,m; cin >> x >> n >> m;
+      int x, y; cin >> x >> y;
+      pair<int, int> maxData;
+      int maxIndex;
+      for(int i=1; i<=x; i++){
+         string s; cin >> s;
+         int len{};
 
-      int prev = x;
-      for(int i{}; i<n; i++){
-         x = (x/2) + 10;
-         // cout << x << " ";
-         if(x>prev){
-            x = prev;
-            break;
+         int jStart = -1;
+         for(int j{}; j<s.length(); j++){
+            if(s[j] == '#'){
+               if(jStart==-1) jStart = j;
+               len++;
+            }
          }
-         prev = fmin(x, prev);
+         if(len > maxData.first){
+            maxIndex = i;
+            maxData.first = len;
+            maxData.second = jStart+len/2;
+         }
+         // maxData.first = fmax(len, maxData.first);
       }
 
-      for(int i{}; i<m; i++){
-         x -= 10;
-      }
-
-      if(x <= 0){
-         cout << "YES";
-      }else{
-         cout << "NO";
-      }
-      cout << endl;
+      cout << maxIndex << " " << maxData.second+1 << endl;
    }
 }
