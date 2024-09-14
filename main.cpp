@@ -3,23 +3,32 @@ using namespace std;
 #define int long long
 
 signed main(){
-// 1475B - New Year's Number 
+ 	// 1337B - Kana and Dragon Quest game 
 
    int t; cin >> t;
    while(t--){
-      int n; cin >> n;
-      int n2020 = n, n2021 = n;
+      int x,n,m; cin >> x >> n >> m;
 
-      while(n2020%2021 != 0 && n2021%2020 != 0){
-         n2020 -= 2020;
-         n2021 -= 2021;
-         n = fmin(n2020,n2021);
-         if(n < 2020) {
+      int prev = x;
+      for(int i{}; i<n; i++){
+         x = (x/2) + 10;
+         // cout << x << " ";
+         if(x>prev){
+            x = prev;
             break;
          }
+         prev = fmin(x, prev);
       }
-      if(n<2020){
-         cout << "NO" << endl;
-      }else cout << "YES" << endl;
+
+      for(int i{}; i<m; i++){
+         x -= 10;
+      }
+
+      if(x <= 0){
+         cout << "YES";
+      }else{
+         cout << "NO";
+      }
+      cout << endl;
    }
 }
