@@ -3,32 +3,35 @@ using namespace std;
 #define int long long
 
 signed main(){
-
-   // 1985D - Manhattan Circle 	
+   //  1462C - Unique Number 
    int t; cin >> t;
    while(t--){
-      int x, y; cin >> x >> y;
-      pair<int, int> maxData;
-      int maxIndex;
-      for(int i=1; i<=x; i++){
-         string s; cin >> s;
-         int len{};
+      int n; cin >> n;
 
-         int jStart = -1;
-         for(int j{}; j<s.length(); j++){
-            if(s[j] == '#'){
-               if(jStart==-1) jStart = j;
-               len++;
-            }
-         }
-         if(len > maxData.first){
-            maxIndex = i;
-            maxData.first = len;
-            maxData.second = jStart+len/2;
-         }
-         // maxData.first = fmax(len, maxData.first);
+      if(n>45) {
+         cout << -1 << endl;
+         continue;
       }
 
-      cout << maxIndex << " " << maxData.second+1 << endl;
+      // 1 digit
+      if(n/10 == 0){
+         cout << n << endl;
+         continue;
+      }
+
+      int temp = n;
+      int it = 10;
+      while(temp >= it){
+         it--;
+         temp -= it;
+      }
+      
+      string s{};
+      for(int i=9; i>=it; i--){
+         s += to_string(i);
+      }
+      reverse(s.begin(), s.end());
+      cout << temp << s << endl;
+
    }
 }
