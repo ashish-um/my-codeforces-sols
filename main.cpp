@@ -3,35 +3,27 @@ using namespace std;
 #define int long long
 
 signed main(){
-   //  1462C - Unique Number 
+   // 1807D - Odd Queries 
    int t; cin >> t;
    while(t--){
-      int n; cin >> n;
-
-      if(n>45) {
-         cout << -1 << endl;
-         continue;
+      int n,q; cin >> n >> q;
+      vector<int> arr(n+1);
+      vector<int> sums(n+1);
+      for(int i=1; i<=n; i++) {
+         cin >> arr[i];
+         sums[i] = sums[i-1]+arr[i];
       }
 
-      // 1 digit
-      if(n/10 == 0){
-         cout << n << endl;
-         continue;
-      }
+      while(q--){
+         int l,r,k; cin >> l >> r >> k;
+         int sum = sums[n] - sums[r] + sums[l-1] + k*(r-l+1);
 
-      int temp = n;
-      int it = 10;
-      while(temp >= it){
-         it--;
-         temp -= it;
+         if(sum%2==0){
+            cout << "NO";
+         }else{
+            cout << "YES";
+         }
+         cout << endl;
       }
-      
-      string s{};
-      for(int i=9; i>=it; i--){
-         s += to_string(i);
-      }
-      reverse(s.begin(), s.end());
-      cout << temp << s << endl;
-
    }
 }
