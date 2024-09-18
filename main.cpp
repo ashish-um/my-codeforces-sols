@@ -2,26 +2,36 @@
 using namespace std;
 #define int long long
 
+bool isVOW(char c){
+   if(c == 'a' || c == 'e') return true;
+   return false;
+}
+
 signed main(){
-   // A - Lights Out 
-   vector<vector<bool>> v(5, vector<bool>(5, true));
+// 1915D - Unnatural Language Processing 
 
-   for(int i=1; i<=3; i++){
-      for(int j=1; j<=3; j++){
-         int inp; cin >> inp;
-         v[i][j] = (inp%2!=0 ? !v[i][j] : v[i][j]);
-         v[i-1][j] = (inp%2!=0 ? !v[i-1][j] : v[i-1][j]);
-         v[i+1][j] = (inp%2!=0 ? !v[i+1][j] : v[i+1][j]);
-         v[i][j-1] = (inp%2!=0 ? !v[i][j-1] : v[i][j-1]);
-         v[i][j+1] = (inp%2!=0 ? !v[i][j+1] : v[i][j+1]);
+   int t; cin >> t;
+   while(t--){
+      int n; cin >> n;
+      string s; cin >> s;
+
+      string res = string(1, s[0]) + s[1];
+      int last = 1;
+      for(int i=2; i<n; i++){
+         if(isVOW(s[i])) {
+            if(i-last == 2 || i-last == 3){
+               char temp = res[res.length()-1];
+               res[res.length()-1] = '.';
+               res+= temp;
+               res+= s[i];
+            }
+            last = i;
+         }else{
+            res += s[i];
+         }
       }
-   }
 
-   for(int i=1; i<=3; i++){
-      for(int j=1; j<=3; j++){
-         cout << v[i][j];
-      }
-      cout << endl;
+      
+      cout << res << endl;
    }
-
 }
