@@ -2,36 +2,41 @@
 using namespace std;
 #define int long long
 
-bool isVOW(char c){
-   if(c == 'a' || c == 'e') return true;
-   return false;
-}
-
 signed main(){
-// 1915D - Unnatural Language Processing 
+   int t;
+   cin >> t;
 
-   int t; cin >> t;
    while(t--){
-      int n; cin >> n;
+      int n,k; cin >> n >> k;
       string s; cin >> s;
 
-      string res = string(1, s[0]) + s[1];
-      int last = 1;
-      for(int i=2; i<n; i++){
-         if(isVOW(s[i])) {
-            if(i-last == 2 || i-last == 3){
-               char temp = res[res.length()-1];
-               res[res.length()-1] = '.';
-               res+= temp;
-               res+= s[i];
-            }
-            last = i;
+      unordered_map<char, int> m;
+
+      for(char c:s){
+         m[c]++;
+      }
+
+      int even{}, odd{};
+      for(auto it:m){
+         if((float)it.second/2>0){
+            even += (it.second/2)*2;
+            odd += it.second%2;
          }else{
-            res += s[i];
+            odd += it.second;
          }
       }
 
-      
-      cout << res << endl;
+      int diff = odd-k;
+
+      if(diff<2){
+         if(diff < 0){
+            if(even + diff > 0) cout << "YES";
+            else cout << "NO";
+         } else cout << "YES";
+      }else{
+         cout << "NO";
+      }
+      cout << endl;
    }
+   
 }
