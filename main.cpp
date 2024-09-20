@@ -3,20 +3,19 @@ using namespace std;
 #define int long long
 
 signed main(){
-   // B - Decoding 
-   int n; cin >> n;
-   string s; cin >> s;
-   int median = s.length()/2;
+   // A. Lunch Rush
+   int n,k; cin >> n >> k;
+   int max=-LONG_MAX;
+   while(n--){
+      int f,t; cin >> f >> t;
+      if(t>k){
+         max = fmax(max, (f-(t-k)));
 
-   string res = (s.length()%2==0 ? "" : string(1,s[0]));
+      }else{
+         max = fmax(max, f);
 
-   if(s.length()<3){
-      cout << s; 
-      return 0;
+      }
    }
 
-   for(int i=(s.length()%2 ==0 ? 0 : 1); i<s.length()-1; i+=2){
-      res = string(1, s[i]) + res + string(1, s[i+1]);
-   }
-   cout << res;
+   cout << max;
 }
