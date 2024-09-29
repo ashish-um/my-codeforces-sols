@@ -4,16 +4,40 @@ using namespace std;
 #define cout(v) for(auto i:v){cout<<i<<" ";}cout<<endl
 #define cin(v) for(auto &i:v){cin>>i;}
 #define qsort(v) sort(v.begin(), v.end())
+#define all(v) v.begin(), v.end()
 
 signed main(){
-   //  1353C - Board Moves  
+   // C. Not Adjacent Matrix (This was Awesome!!)
    int t; cin >> t;
    while(t--){
       int n; cin >> n;
-      int res{};
-      for(int i=3,multipler=1; i<=n; i+=2, multipler++){
-         res += ((i*4)-4)*multipler;
+      vector<vector<int>> v(n, vector<int>(n));
+
+      int num=1;
+      for(int i{}; i<n; i++){
+         v[i][i] = num++;
       }
-      cout << res << endl;
+
+      for(int i=1; i<n;i++){
+         for(int j=0;j<n-i; j++){
+            v[i+j][j] = num++;
+         }
+         for(int j=0;j<n-i; j++){
+            v[j][i+j] = num++;
+         }
+      }
+
+      if(n==2){
+         cout << -1 << endl;
+      }else{
+         for(auto it:v){
+            for(int _:it){
+               cout << _ << " ";
+            }
+            cout << endl;
+         }
+      }
+      
    }
+
 }
