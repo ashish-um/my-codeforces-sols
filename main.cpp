@@ -6,38 +6,37 @@ using namespace std;
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
+void solve(){
+    // D - Black and White Stripe 
+    int n,k;cin>>n>>k;
+    string s; cin>>s;
+
+    int left = 0;
+    int right = 0;
+    int sum=0;
+    int efforts{};
+    int res = LONG_MAX;
+
+    while(right <= n){
+        if(sum == k && n != k){
+            res = min(res, efforts);
+            // cout << left <<" "<<right << ": "<< efforts << ", ";
+            efforts -= (s[left++] == 'W' ? 1 : 0);
+            efforts += (s[right++] == 'W' ? 1 : 0);
+        }else{
+            efforts += (s[right++] == 'W' ? 1 : 0);
+            sum++;
+        }
+    }
+
+    if(n == k){
+        cout << efforts << endl;
+    }else cout << res << endl;
+}
+
 signed main(){
-   // C. Not Adjacent Matrix (This was Awesome!!)
-   int t; cin >> t;
-   while(t--){
-      int n; cin >> n;
-      vector<vector<int>> v(n, vector<int>(n));
-
-      int num=1;
-      for(int i{}; i<n; i++){
-         v[i][i] = num++;
-      }
-
-      for(int i=1; i<n;i++){
-         for(int j=0;j<n-i; j++){
-            v[i+j][j] = num++;
-         }
-         for(int j=0;j<n-i; j++){
-            v[j][i+j] = num++;
-         }
-      }
-
-      if(n==2){
-         cout << -1 << endl;
-      }else{
-         for(auto it:v){
-            for(int _:it){
-               cout << _ << " ";
-            }
-            cout << endl;
-         }
-      }
-      
-   }
-
+    int t; cin >>t;
+    while(t--){
+        solve();
+    }
 }
