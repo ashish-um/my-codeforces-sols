@@ -7,29 +7,26 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    int n,m,x,y; cin>>n>>m>>x>>y;
-    int cost{}, cnt{};
-    for(int i{}; i<n; i++){
-        string s; cin >> s;
-        cnt=0;
-        for(int j{}; j<s.length()-1; j++){
-            if(s[j]=='.' && s[j+1]=='.'){
-                cost += min(2*x,y);
-                cnt+=2;
-                j++;
-            }else if(s[j]=='.'){
-                cnt++;
-                cost += x;
-            }else{
-                cnt=0;
-            }
-            if(j==s.length()-2 && s[j+1]=='.'){
-                if(cnt%2==0){
-                    cost+=x;
-                }
-            }            
+    // B - K-Sort 
+    int n; cin >> n;
+    int mx = -LONG_MAX;
+    vector<int> v(n);
+    cin(v);
+
+    vector<int> diffs;
+    for(int i{};i<n;i++){
+        mx = max(v[i], mx);
+        if(v[i]<mx){
+            diffs.push_back(mx-v[i]);
         }
-        if(s.length()==1 && s[0]=='.') cost+=x;
+    }
+
+    diffs.push_back(0);
+    qsort(diffs);
+
+    int cost{};
+    for(int i=1; i<diffs.size(); i++){
+        cost += (diffs.size()-i+1)*(diffs[i]-diffs[i-1]);
     }
     cout << cost << endl;
 }
