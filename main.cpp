@@ -7,31 +7,31 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    // D - Black and White Stripe 
-    int n,k;cin>>n>>k;
-    string s; cin>>s;
-
-    int left = 0;
-    int right = 0;
-    int sum=0;
-    int efforts{};
-    int res = LONG_MAX;
-
-    while(right <= n){
-        if(sum == k && n != k){
-            res = min(res, efforts);
-            // cout << left <<" "<<right << ": "<< efforts << ", ";
-            efforts -= (s[left++] == 'W' ? 1 : 0);
-            efforts += (s[right++] == 'W' ? 1 : 0);
-        }else{
-            efforts += (s[right++] == 'W' ? 1 : 0);
-            sum++;
+    int n,m,x,y; cin>>n>>m>>x>>y;
+    int cost{}, cnt{};
+    for(int i{}; i<n; i++){
+        string s; cin >> s;
+        cnt=0;
+        for(int j{}; j<s.length()-1; j++){
+            if(s[j]=='.' && s[j+1]=='.'){
+                cost += min(2*x,y);
+                cnt+=2;
+                j++;
+            }else if(s[j]=='.'){
+                cnt++;
+                cost += x;
+            }else{
+                cnt=0;
+            }
+            if(j==s.length()-2 && s[j+1]=='.'){
+                if(cnt%2==0){
+                    cost+=x;
+                }
+            }            
         }
+        if(s.length()==1 && s[0]=='.') cost+=x;
     }
-
-    if(n == k){
-        cout << efforts << endl;
-    }else cout << res << endl;
+    cout << cost << endl;
 }
 
 signed main(){
