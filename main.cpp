@@ -7,28 +7,21 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    // B - K-Sort 
-    int n; cin >> n;
-    int mx = -LONG_MAX;
-    vector<int> v(n);
-    cin(v);
-
-    vector<int> diffs;
-    for(int i{};i<n;i++){
-        mx = max(v[i], mx);
-        if(v[i]<mx){
-            diffs.push_back(mx-v[i]);
+    int k; cin>>k;
+    int i=k;
+ 
+    int root = sqrt(i);
+    i=(2*k-(i-root))-1;
+    // cout << i << endl;
+    while(i++){
+        root = sqrt(i);
+ 
+        // cout << i  << ": " << (i-root) << ", ";
+        if((i-root) == k){
+            cout << i << endl;
+            break;
         }
     }
-
-    diffs.push_back(0);
-    qsort(diffs);
-
-    int cost{};
-    for(int i=1; i<diffs.size(); i++){
-        cost += (diffs.size()-i+1)*(diffs[i]-diffs[i-1]);
-    }
-    cout << cost << endl;
 }
 
 signed main(){
