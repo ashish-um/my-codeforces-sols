@@ -6,27 +6,23 @@ using namespace std;
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
-void solve(){
-    int k; cin>>k;
-    int i=k;
- 
-    int root = sqrt(i);
-    i=(2*k-(i-root))-1;
-    // cout << i << endl;
-    while(i++){
-        root = sqrt(i);
- 
-        // cout << i  << ": " << (i-root) << ", ";
-        if((i-root) == k){
-            cout << i << endl;
-            break;
-        }
-    }
-}
-
 signed main(){
-    int t; cin >>t;
-    while(t--){
-        solve();
+    467B 	
+// Fedor and New Game 
+    int n,m,k; cin >> n>> m>>k;
+    vector<int> v;
+    for(int i{}; i<=m;i++){
+        int num;cin>>num;
+        v.push_back(num);
     }
+    m=*v.rbegin();
+    v.pop_back();
+    int frand{};
+    for(int i{}; i<v.size(); i++){
+        if(__builtin_popcount(v[i]^m) <= k){
+            frand++;    
+        }
+        
+    }
+    cout << frand;
 }
