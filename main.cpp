@@ -7,22 +7,32 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 signed main(){
-    467B 	
-// Fedor and New Game 
-    int n,m,k; cin >> n>> m>>k;
-    vector<int> v;
-    for(int i{}; i<=m;i++){
-        int num;cin>>num;
-        v.push_back(num);
-    }
-    m=*v.rbegin();
-    v.pop_back();
-    int frand{};
-    for(int i{}; i<v.size(); i++){
-        if(__builtin_popcount(v[i]^m) <= k){
-            frand++;    
-        }
+    // B - Make it Divisible by 25 
+    string toFind[] = {"00","50","25","75"};
+    int t; cin >>t;
+    while(t--){
+        string s; cin >> s;
         
+        int ans = LONG_MAX;
+        for(string it:toFind){
+            int ptr = s.length()-1;
+            int res{};
+            while(ptr > 0 && s[ptr] != it[1]){
+                ptr--;
+                res++;
+            }
+
+            ptr--;
+
+            while(ptr > 0 && s[ptr] != it[0]){
+                ptr--;
+                res++;
+            }
+
+            ans = min(res, ans);
+        }
+
+        cout << ans << endl;
+
     }
-    cout << frand;
 }
