@@ -6,33 +6,29 @@ using namespace std;
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
+bool doCounter(int bit, int index){
+    return (((bit>>index)&1)==1);
+}
+
 signed main(){
-    // B - Make it Divisible by 25 
-    string toFind[] = {"00","50","25","75"};
-    int t; cin >>t;
-    while(t--){
-        string s; cin >> s;
-        
-        int ans = LONG_MAX;
-        for(string it:toFind){
-            int ptr = s.length()-1;
-            int res{};
-            while(ptr > 0 && s[ptr] != it[1]){
-                ptr--;
-                res++;
-            }
+    // 1097B - Petr and a Combination Lock 
+    int n; cin >> n;
+    vector<int> v(n); cin(v);
 
-            ptr--;
-
-            while(ptr > 0 && s[ptr] != it[0]){
-                ptr--;
-                res++;
-            }
-
-            ans = min(res, ans);
+    for(int i{}; i<(1<<n); i++){
+        int sum{};
+        for(int j{}; j<n; j++){
+            if(doCounter(i, j)){
+                sum += v[j];
+            }else sum -= v[j];
         }
-
-        cout << ans << endl;
-
+        sum = (sum%360);
+        if(sum == 0){
+            cout << "YES";
+            return 0;
+        }
     }
+
+    cout << "NO";
+
 }
