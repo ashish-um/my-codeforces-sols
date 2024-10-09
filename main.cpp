@@ -7,35 +7,23 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 signed main(){
-    // 1829C - Mr. Perfectly Fine 
-    int t; cin>>t;
-    while(t--){
-
-        int p; cin >> p;
-        int mamin=LONG_MAX;
-
-        vector<int> L,R;
-        int l=-1,r=-1;
-
-        while(p--){
-            int m; cin >> m;
-            string bit; cin >> bit;
-            if(bit == "10") {
-                if(l==-1) l = m;
-                else l = min(l, m);
-            }
-            if(bit == "01") {
-                if(r==-1) r=m;
-                else r = min(r, m);
-            }
-
-            if(l>0 && r>0)
-            mamin = min(mamin, (l+r));
-            if(bit == "11") mamin = min(mamin, m);
-        }
-
-        if(mamin == LONG_MAX){
-            cout << -1 << endl;
-        }else cout << mamin << endl;
+    int n; cin >> n;
+    vector<int>v(5);
+    for(int i{}; i<n;i++){
+        int inp; cin >> inp;
+        v[inp]++;
     }
+
+    int req = v[4] + v[3] + v[2]/2 + v[2]%2;
+
+    v[1] = (v[1]-v[3]);
+    v[1] = v[1] - (v[2]%2)*2;
+
+    if(v[1]>4) {
+        req += v[1]/4 + (v[1]%4>0?1:0);
+    }else if(v[1]>0){
+        req += 1;
+    }
+
+    cout << req;
 }
