@@ -6,26 +6,46 @@ using namespace std;
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
-void solve(){
-    //  1342A - Road To Zero 
-    int x,y,a,b; cin >> x>>y>>a>>b;
-    int sm = min(x,y);
-    int lg = max(x,y);
-
-    int cost = (lg-sm)*a;
-
-    if(2*a < b){
-        cout << cost + (sm*(a*2));
-    }else{
-        cout << cost + sm*b;
-    }
-    cout << "\n";
-
-}
-
 signed main(){
-    int t; cin >> t;
+    // 2005B1 - The Strict Teacher (Easy Version) 
+    
+    int t; cin >>t;
     while(t--){
-        solve();
+        int n,m,q;cin>>n>>m>>q;
+        vector<int> teachers(m);
+        cin(teachers);
+
+        for(int i{}; i<q; i++){
+            int david; cin >> david;
+
+            int posMIN = LONG_MAX, negMIN = LONG_MIN;
+            int minElem = LONG_MAX;
+            int maxElem = LONG_MIN;
+            for(int j{}; j<m; j++){
+                if(teachers[j] - david > 0){ // POS DIFF
+                    posMIN = min(posMIN, teachers[j]-david);
+                }else{                      // NEG DIFF
+                    negMIN = max(negMIN, teachers[j]-david);
+                }
+                minElem = min(minElem, teachers[j]);
+                maxElem = max(maxElem, teachers[j]);
+            }
+
+            if(negMIN == 0){
+                cout << 0;
+            }
+            else if(negMIN == LONG_MIN){
+                cout << minElem-1;
+            }
+            else if(posMIN == LONG_MAX){
+                cout << n-maxElem;
+
+            }else{
+                int mid = (negMIN + posMIN)/2;
+                cout << min(posMIN-mid, abs(negMIN-mid));
+            }
+            cout << "\n";
+        }
     }
+
 }
