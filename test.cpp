@@ -7,25 +7,22 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    //  1399B - Gifts Fixing 
+    // 1343C - Alternating Subsequence 
     int n; cin >> n;
-    vector<int> a(n); cin(a);
-    vector<int> b(n); cin(b);
+    vector<int> v(n);cin(v);
 
-    int aMiN = *min_element(all(a));
-    int bMiN = *min_element(all(b));
-
-    int res{};
-    for(int i{}; i<n; i++){
-        if(a[i]!=aMiN && b[i]!=bMiN){
-            int m = max(a[i]-aMiN, b[i]-bMiN);
-            res += m;
-        }else{
-            res += (a[i]-aMiN) + (b[i]-bMiN);
+    bool currPos=v[0]>0;
+    int temp=LONG_MIN, sum{};
+    for(int i{};i<n;i++){
+        if((v[i]>0) != currPos) {
+            sum += temp;
+            temp = LONG_MIN;
         }
+        currPos = (v[i] > 0);
+        temp = max(v[i], temp);
     }
-
-    cout << res << "\n";
+    sum += temp;
+    cout << sum << "\n";
 }
 
 
