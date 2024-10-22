@@ -7,28 +7,30 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    // 1343C - Alternating Subsequence 
-    int n; cin >> n;
-    vector<int> v(n);cin(v);
+    int n, m; cin >> n >> m;
+    vector<int> v(n); cin(v);
+    int maax = *max_element(all(v));
+    while(m--){
+        char oper; cin >> oper;
+        int l,r; cin >> l >> r;
 
-    bool currPos=v[0]>0;
-    int temp=LONG_MIN, sum{};
-    for(int i{};i<n;i++){
-        if((v[i]>0) != currPos) {
-            sum += temp;
-            temp = LONG_MIN;
+        if(maax>=l && maax <= r){
+            if(oper == '+'){
+                maax++;
+            }else{
+                maax--;
+            }
         }
-        currPos = (v[i] > 0);
-        temp = max(v[i], temp);
+
+        cout << maax << " ";
     }
-    sum += temp;
-    cout << sum << "\n";
 }
 
-
 signed main(){
-    int t; cin >> t;
-    while(t--){
-       solve();
+    int t; cin>>t;
+    while(t--) {
+        solve();
+        cout << "\n";
     }
+
 }
