@@ -7,27 +7,16 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    int n; cin >> n;
-    vector<int> x(n); cin(x);
-    qsort(x);
-    int q; cin >> q;
-    for(int i{}; i<q; i++){
-        int temp; cin >> temp;
-        auto it = upper_bound(all(x), temp);
+    int n,k; cin >> n >> k;
 
-        if(it != x.begin()){
-            cout << it - x.begin() << "\n";
-        }else{
-            cout << 0 << "\n";
-        }
-    }
+    cout << ( n*((k+n-2)/(n-1) -1) + k - ((k+n-2)/(n-1) -1)*(n-1) );
 }
  
 signed main(){
-    // int t; cin >>t;
-    // while(t--){
-    //     solve();
-    //     cout << "\n";
-    // }
-    solve();
+    int t; cin >>t;
+    while(t--){
+        solve();
+        cout << "\n";
+    }
+    // solve();
 }
