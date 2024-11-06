@@ -1,39 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define int long long
+// #define int long long
 #define cout(v) for(auto i:v){cout<<i<<" ";}cout<<endl
 #define cin(v) for(auto &i:v){cin>>i;}
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
-
 void solve(){
-    // C - Two Teams Composing 
-    int n; cin >> n;
-    // vector<int> v(n);
-    unordered_map<int, int> m;
-    int max_elem;
-    int mux = LONG_MIN;
-    for(int i{}; i<n; i++){
-        int temp; cin >> temp;
-        m[temp]++;
-        if(mux != max(mux, m[temp])){
-            max_elem = temp;
-            mux = max(mux, m[temp]);
-        }
-    }
+    int n, l; cin >> n >> l;
+    vector<int> v(n); cin(v);
 
-    int my = min((int)(m.size()-1), m[max_elem]);
-    if(m[max_elem] > m.size()){
-        my = m.size();
+    qsort(v);
+
+    double max_diff = LONG_MIN;
+    for(int i=1; i<n; i++){
+        max_diff = max(max_diff, (double)v[i] - v[i-1]);
     }
-    cout << my;
+    max_diff /= 2;
+    max_diff = max((double)v[0], max_diff);
+    max_diff = max((double)l-*v.rbegin(), max_diff);
+
+    cout << setprecision(10) << fixed << max_diff << endl;
 }
  
 signed main(){
-    int t; cin >>t;
-    while(t--){
-        solve();
-        cout << "\n";
-    }
+    // int t; cin >>t;
+    // while(t--){
+    //     solve();
+    //     cout << "\n";
+    // }
+    solve();
 }
