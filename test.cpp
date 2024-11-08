@@ -1,39 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
-// #define int long long
+#define int long long
 #define cout(v) for(auto i:v){cout<<i<<" ";}cout<<endl
 #define cin(v) for(auto &i:v){cin>>i;}
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    int n,t; cin>>n>>t;
-    vector<int> v(n); cin(v);
+    int x; cin >> x;
+    int end = cbrt(x/2)+1;
 
-    int sum{};
-    int last{};
-    int count{};
-    int res = LONG_MIN;
+    // cout << end; 
+    // return;
+    for(int i=1; i < end; i++){
+        int left = x - pow(i,3);
 
-    for(int i{};i<n; i++){
-        count++; 
-        sum+=v[i];
-        while(sum>t){
-            sum -= v[last];
-            last++;
-            count--;
+        int m_cbrt = cbrt(left);
+        // cout << " [" << left << ", " << m_cbrt << "] ";
+        if(pow(m_cbrt, 3) == left){
+            cout << "YES";
+            return;
         }
-
-        res = max(res, count);
     }
-    cout << res;
+    cout << "NO";
 }
  
 signed main(){
-    // int t; cin >>t;
-    // while(t--){
-    //     solve();
-    //     cout << "\n";
-    // }
-    solve();
+    int t; cin >>t;
+    while(t--){
+        solve();
+        cout << "\n";
+    }
+    // solve();
 }
