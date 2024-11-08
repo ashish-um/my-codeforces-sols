@@ -7,16 +7,33 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    int n,k; cin >> n >> k;
+    int n,t; cin>>n>>t;
+    vector<int> v(n); cin(v);
 
-    cout << ( n*((k+n-2)/(n-1) -1) + k - ((k+n-2)/(n-1) -1)*(n-1) );
+    int sum{};
+    int last{};
+    int count{};
+    int res = LONG_MIN;
+
+    for(int i{};i<n; i++){
+        count++; 
+        sum+=v[i];
+        while(sum>t){
+            sum -= v[last];
+            last++;
+            count--;
+        }
+
+        res = max(res, count);
+    }
+    cout << res;
 }
  
 signed main(){
-    int t; cin >>t;
-    while(t--){
-        solve();
-        cout << "\n";
-    }
-    // solve();
+    // int t; cin >>t;
+    // while(t--){
+    //     solve();
+    //     cout << "\n";
+    // }
+    solve();
 }
