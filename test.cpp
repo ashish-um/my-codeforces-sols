@@ -5,26 +5,43 @@ using namespace std;
 #define cin(v) for(auto &i:v){cin>>i;}
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
-
+    
 void solve(){
-    int x; cin >> x;
-    int end = cbrt(x/2)+1;
+    string s; cin >> s;   
+    vector<pair<char, int>> v;
 
-    // cout << end; 
-    // return;
-    for(int i=1; i < end; i++){
-        int left = x - pow(i,3);
+    v.push_back(make_pair(s[0], 1));
 
-        int m_cbrt = cbrt(left);
-        // cout << " [" << left << ", " << m_cbrt << "] ";
-        if(pow(m_cbrt, 3) == left){
-            cout << "YES";
-            return;
+    int x = 1;
+    while(s[x] == v[0].first){
+        x++;
+        v[0].second++;
+    }
+
+    int vIndex = 0;
+
+    for(int i=x; i < s.length(); i++){
+        if(v[vIndex].first != s[i]){
+            v.push_back(make_pair(s[i], 1));
+            vIndex++;
+        }else{
+            v[vIndex].second++;
         }
     }
-    cout << "NO";
+
+    int ans = LONG_MAX;
+    for(int i=1; i<v.size()-1; i++){
+        if(v[i-1].first - v[i+1].first != 0){
+            ans = min(ans, v[i].second+2);
+        }
+    }
+
+    if(ans == LONG_MAX){
+        cout << 0;
+    }else cout << ans;
+
 }
- 
+    
 signed main(){
     int t; cin >>t;
     while(t--){
