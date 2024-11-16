@@ -5,31 +5,29 @@ using namespace std;
 #define cin(v) for(auto &i:v){cin>>i;}
 #define qsort(v) sort(v.begin(), v.end())
 #define all(v) v.begin(), v.end()
-    
+
 void solve(){
-    int n; cin >> n;
-    vector<int> v(n); cin(v);
-    for(int i=1; i<n; i++){
-        v[i] += v[i-1];
+    int n,t; cin >> n >> t;
+    string s; 
+
+    if(n == 1 && t == 10){
+        cout << -1;
+        return;
     }
 
-    vector<int> help(*v.rbegin()+1);
-
-    int count=1;
-    for(int i=0;i<*v.rbegin()+1;i++){
-        if(i>v[count-1]){
-            count++;
-        }
-        help[i] = count;
+    if(t == 10){
+        t = 0;
+        n--;
+        s += "1";
     }
-    int m; cin>>m;
-    for(int i{}; i<m; i++){
-        int inp; cin >> inp;
-
-        cout << help[inp] << "\n";
-    }
-}
     
+    for(int i{}; i<n; i++){
+        s += to_string(t);
+    }
+
+    cout << s;
+}
+
 signed main(){
     // int t; cin >>t;
     // while(t--){
