@@ -7,18 +7,34 @@ using namespace std;
 #define all(v) v.begin(), v.end()
 
 void solve(){
-    int n; cin >> n;
-    if(floor(360.0/(180-n)) == ceil(360.0/(180-n))){
-        cout << "YES";
-    }else{
-        cout << "NO";
+    string s; cin >> s;
+    vector<int> v(s.length());
+    for(int i=1; i < s.length(); i++){
+        v[i] = v[i-1] + (s[i] == s[i-1]);
     }
+
+    int m; cin >> m;
+    for(int i{}; i < m; i++){
+        int l,r; cin >> l >> r;
+        if(r-l==1){
+            if(v[l] > v[l-1]){
+                cout << 1 << "\n";
+            }else{
+                cout << 0 << "\n";
+            }
+            continue;
+        }
+        cout << v[r-1] - v[l-1] << "\n";
+    }
+
+    // cout(v);
 }
 
 signed main(){
-    int t; cin >> t;
-    while(t--){
-        solve();
-        cout << "\n";
-    }
+    solve();
+    // int t; cin >> t;
+    // while(t--){
+    //     solve();
+    //     cout << "\n";
+    // }
 }           
